@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Barbour Jacket Gift Voucher</title>
+  <style>
+    :root { --bg:#f5f1e8; --ink:#1c1a17; --muted:#6e665d; --accent:#233126; --shadow:0 24px 60px rgba(28,26,23,.14); }
+    *{box-sizing:border-box}
+    html,body{width:100%;overflow-x:hidden}
+    body{margin:0;min-height:100svh;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(circle at top, rgba(255,255,255,.75), transparent 35%), linear-gradient(180deg,#ebe3d2 0%,var(--bg) 100%);display:grid;place-items:center;padding:clamp(14px,3.5vw,24px)}
+    .shell{width:min(1120px,100%)}
+    .hero{ text-align:center;background:rgba(251,248,241,.86);border:1px solid rgba(111,95,72,.18);border-radius:24px;box-shadow:var(--shadow);padding:clamp(22px,5vw,36px) clamp(16px,4vw,24px);backdrop-filter:blur(8px)}
+    .eyebrow{margin:0 0 10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+    h1{margin:0;font-size:clamp(1.8rem,7vw,3.8rem);line-height:1.05;font-weight:700;hyphens:auto}
+    .sub{margin:14px auto 0;max-width:42rem;font-size:clamp(.98rem,4vw,1.15rem);line-height:1.7;color:var(--muted)}
+    .reveal-btn{margin-top:22px;appearance:none;border:0;background:var(--accent);color:#f8f4ea;padding:14px 24px;border-radius:999px;font-size:1rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:transform 180ms ease,opacity 180ms ease;box-shadow:0 14px 30px rgba(35,49,38,.24);min-height:48px;min-width:140px}
+    .voucher-wrap{margin-top:18px;display:none}.voucher-wrap.visible{display:block;animation:fadeUp 500ms ease forwards}
+    .voucher{position:relative;overflow:hidden;border-radius:22px;box-shadow:var(--shadow);background:transparent}
+    .voucher-photo{display:grid;place-items:center;max-width:100%}
+    .voucher-photo img{width:min(100%,1040px);height:auto;border-radius:22px;box-shadow:0 16px 34px rgba(0,0,0,.16);object-fit:cover;border:1px solid rgba(0,0,0,.08)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @media (max-width: 430px){
+      body{padding:12px;place-items:start center}
+      .shell{width:100%}
+      .hero{border-radius:20px;padding:20px 16px}
+      .reveal-btn{width:100%;max-width:280px}
+      .voucher-wrap{margin-top:14px}
+      .voucher-photo img{width:100%;border-radius:18px}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">A gift to unwrap</p>
+      <h1>There’s something special waiting for you.</h1>
+      <p class="sub">Click the button below to reveal your gift voucher for a Barbour jacket.</p>
+      <button class="reveal-btn" id="revealBtn" type="button" aria-controls="voucherPanel" aria-expanded="false">Reveal</button>
+    </section>
+
+    <section class="voucher-wrap" id="voucherPanel" aria-hidden="true">
+      <article class="voucher">
+        <div class="voucher-photo">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/327805ea-6ca9-41ed-bae0-e1a6ac79d0a8.png" alt="Barbour Transport Waxed Jacket voucher preview" />
+        </div>
+      </article>
+    </section>
+  </main>
+  <script>
+    const button = document.getElementById('revealBtn');
+    const panel = document.getElementById('voucherPanel');
+    button.addEventListener('click', () => {
+      panel.classList.add('visible');
+      panel.setAttribute('aria-hidden', 'false');
+      button.setAttribute('aria-expanded', 'true');
+      button.textContent = 'Revealed';
+      button.disabled = true;
+      button.style.opacity = '0.85';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>
