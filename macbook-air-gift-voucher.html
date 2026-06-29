@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MacBook Air Gift Voucher</title>
+  <meta name="description" content="Reveal a minimal gift voucher for a 13-inch MacBook Air." />
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --surface: rgba(255,255,255,0.78);
+      --ink: #151515;
+      --muted: #6b7280;
+      --line: rgba(17,24,39,0.12);
+      --line-strong: rgba(17,24,39,0.18);
+      --accent: #111111;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.10);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; overflow-x: hidden; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.9), transparent 34%),
+        linear-gradient(180deg, #eef1f4 0%, var(--bg) 100%);
+      padding: clamp(14px, 3.5vw, 28px);
+    }
+
+    .shell {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      padding: clamp(22px, 4vw, 38px) clamp(16px, 4vw, 30px);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.02;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .sub {
+      margin: 14px auto 0;
+      max-width: 40rem;
+      font-size: clamp(1rem, 2.8vw, 1.12rem);
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .reveal-btn {
+      margin-top: 22px;
+      appearance: none;
+      border: 1px solid rgba(17,17,17,0.08);
+      background: #111111;
+      color: #f9fafb;
+      padding: 14px 26px;
+      border-radius: 999px;
+      min-height: 48px;
+      min-width: 144px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(17,17,17,0.16);
+      transition: transform 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
+    }
+
+    .reveal-btn:hover { transform: translateY(-1px); }
+    .reveal-btn:active { transform: translateY(1px); }
+    .reveal-btn:focus-visible {
+      outline: 3px solid rgba(17,17,17,0.22);
+      outline-offset: 3px;
+    }
+
+    .voucher-wrap {
+      margin-top: 18px;
+      display: none;
+    }
+
+    .voucher-wrap.visible {
+      display: block;
+      animation: fadeUp 520ms ease forwards;
+    }
+
+    .voucher {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,245,247,0.96));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .voucher::before {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 1px solid var(--line-strong);
+      border-radius: calc(var(--radius) - 10px);
+      pointer-events: none;
+    }
+
+    .voucher::after {
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: calc(var(--radius) - 18px);
+      pointer-events: none;
+    }
+
+    .voucher-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      min-height: 560px;
+    }
+
+    .voucher-copy {
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .apple-logo {
+      width: 16px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .voucher-label {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .voucher-copy h2 {
+      margin: 0;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      font-weight: 600;
+      max-width: 10ch;
+    }
+
+    .specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: -0.01em;
+    }
+
+    .voucher-image {
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: clamp(22px, 4vw, 42px);
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,0.95), transparent 38%),
+        linear-gradient(180deg, #f7f8fa 0%, #eceff3 100%);
+    }
+
+    .voucher-image img {
+      width: min(100%, 560px);
+      height: auto;
+      display: block;
+      border-radius: 22px;
+      border: 1px solid rgba(17,24,39,0.08);
+      box-shadow: 0 22px 40px rgba(15,23,42,0.12);
+      object-fit: cover;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 860px) {
+      .voucher-grid { grid-template-columns: 1fr; }
+      .voucher-copy { gap: 18px; }
+      .voucher-copy h2 { max-width: none; }
+    }
+
+    @media (max-width: 430px) {
+      body { padding: 12px; }
+      .hero { border-radius: 20px; }
+      .voucher { border-radius: 22px; }
+      .voucher::before { inset: 12px; }
+      .voucher::after { inset: 20px; }
+      .reveal-btn { width: 100%; max-width: 280px; }
+      .voucher-image img { border-radius: 16px; }
+      .topline { font-size: 0.78rem; }
+      .chip { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">A gift to reveal</p>
+      <h1>There’s a MacBook Air waiting for you.</h1>
+      <p class="sub">Tap below to reveal a clean gift voucher for a 13-inch MacBook Air in silver.</p>
+      <button class="reveal-btn" id="revealBtn" type="button" aria-controls="voucherPanel" aria-expanded="false">Reveal</button>
+    </section>
+
+    <section class="voucher-wrap" id="voucherPanel" aria-hidden="true">
+      <article class="voucher">
+        <div class="voucher-grid">
+          <div class="voucher-copy">
+            <div>
+              <div class="topline">
+                <svg class="apple-logo" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                  <path d="M16.37 12.33c.02 2.5 2.19 3.33 2.21 3.34-.02.06-.35 1.2-1.15 2.37-.69 1.01-1.41 2.02-2.55 2.04-1.12.02-1.48-.66-2.76-.66-1.28 0-1.68.64-2.74.68-1.1.04-1.94-1.1-2.64-2.1-1.43-2.05-2.52-5.79-1.05-8.34.73-1.27 2.03-2.07 3.44-2.09 1.08-.02 2.1.73 2.76.73.66 0 1.91-.9 3.22-.77.55.02 2.09.22 3.08 1.67-.08.05-1.84 1.07-1.82 3.13ZM14.38 3.98c.58-.7.97-1.67.87-2.64-.84.03-1.85.56-2.45 1.25-.54.62-1.01 1.6-.88 2.54.94.07 1.89-.48 2.46-1.15Z"/>
+                </svg>
+                Apple Gift Voucher
+              </div>
+              <p class="voucher-label">Gift Voucher</p>
+              <h2>For a 13-inch MacBook Air</h2>
+              <div class="specs">
+                <span class="chip">Silver</span>
+                <span class="chip">M5 chip</span>
+                <span class="chip">16GB / 1TB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="voucher-image">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/6d7afd7a-7210-401e-95a6-7b92d55c7cec.png" alt="Minimal MacBook Air gift voucher design" />
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const button = document.getElementById('revealBtn');
+    const panel = document.getElementById('voucherPanel');
+
+    button.addEventListener('click', () => {
+      panel.classList.add('visible');
+      panel.setAttribute('aria-hidden', 'false');
+      button.setAttribute('aria-expanded', 'true');
+      button.textContent = 'Revealed';
+      button.disabled = true;
+      button.style.opacity = '0.85';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>
